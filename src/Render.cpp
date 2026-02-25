@@ -53,6 +53,22 @@ void Render::choseTexture(const Figure &toRender)
     {
         myTexture = whiteKnightTexture;
     }
+    if(!toRender.color.compare("white") && !toRender.type.compare("Bishop"))
+    {
+        myTexture = whiteBishopTexture;
+    }
+    if(!toRender.color.compare("white") && !toRender.type.compare("Rook"))
+    {
+        myTexture = whiteRookTexture;
+    }
+    if(!toRender.color.compare("white") && !toRender.type.compare("King"))
+    {
+        myTexture = whiteKingTexture;
+    }
+    if(!toRender.color.compare("white") && !toRender.type.compare("Queen"))
+    {
+        myTexture = whiteQueenTexture;
+    }
 
 
     if(!toRender.color.compare("black") && !toRender.type.compare("Pawn"))
@@ -62,6 +78,22 @@ void Render::choseTexture(const Figure &toRender)
     if(!toRender.color.compare("black") && !toRender.type.compare("Knight"))
     {
         myTexture = blackKnightTexture;
+    }
+    if(!toRender.color.compare("black") && !toRender.type.compare("Bishop"))
+    {
+        myTexture = blackBishopTexture;
+    }
+    if(!toRender.color.compare("black") && !toRender.type.compare("Rook"))
+    {
+        myTexture = blackRookTexture;
+    }
+    if(!toRender.color.compare("black") && !toRender.type.compare("King"))
+    {
+        myTexture = blackKingTexture;
+    }
+    if(!toRender.color.compare("black") && !toRender.type.compare("Queen"))
+    {
+        myTexture = blackQueenTexture;
     }
 }
 
@@ -75,6 +107,22 @@ void Render::loadTextures()
     if (!whiteKnightTexture) {
         std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
     }
+    whiteBishopTexture = IMG_LoadTexture(renderer, "./pictures/white-bishop.png");
+    if (!whiteBishopTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    whiteRookTexture = IMG_LoadTexture(renderer, "./pictures/white-rook.png");
+    if (!whiteRookTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    whiteKingTexture = IMG_LoadTexture(renderer, "./pictures/white-king.png");
+    if (!whiteKingTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    whiteQueenTexture = IMG_LoadTexture(renderer, "./pictures/white-queen.png");
+    if (!whiteQueenTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
 
     blackPawnTexture = IMG_LoadTexture(renderer, "./pictures/black-pawn.png");
     if (!blackPawnTexture) {
@@ -82,6 +130,22 @@ void Render::loadTextures()
     }
     blackKnightTexture = IMG_LoadTexture(renderer, "./pictures/black-knight.png");
     if (!blackKnightTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    blackBishopTexture = IMG_LoadTexture(renderer, "./pictures/black-bishop.png");
+    if (!blackBishopTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    blackRookTexture = IMG_LoadTexture(renderer, "./pictures/black-rook.png");
+    if (!blackRookTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    blackKingTexture = IMG_LoadTexture(renderer, "./pictures/black-king.png");
+    if (!blackKingTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    blackQueenTexture = IMG_LoadTexture(renderer, "./pictures/black-queen.png");
+    if (!blackQueenTexture) {
         std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
     }
 }
