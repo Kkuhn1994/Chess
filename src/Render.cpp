@@ -1,15 +1,5 @@
 #include "../include/Render.hpp"
 
-SDL_Texture* Render::loadTexture(const char *file, SDL_Renderer* renderer) {
-    SDL_Surface* surface = SDL_LoadBMP(file);
-    if (!surface) {
-        std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
-    }
-
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
-    return texture;
-}
 
 void Render::displayField()
 {
@@ -52,30 +42,56 @@ void Render::displayField()
 }
 
 
+void Render::choseTexture(const Figure &toRender)
+{
+    std::cout << toRender.color << "::" << toRender.type << "\n";
+    if(!toRender.color.compare("white") && !toRender.type.compare("Pawn"))
+    {
+        myTexture = whitePawnTexture;
+    }
+    if(!toRender.color.compare("white") && !toRender.type.compare("Knight"))
+    {
+        myTexture = whiteKnightTexture;
+    }
+
+
+    if(!toRender.color.compare("black") && !toRender.type.compare("Pawn"))
+    {
+        myTexture = blackPawnTexture;
+    }
+    if(!toRender.color.compare("black") && !toRender.type.compare("Knight"))
+    {
+        myTexture = blackKnightTexture;
+    }
+}
+
+void Render::loadTextures()
+{
+    whitePawnTexture = IMG_LoadTexture(renderer, "./pictures/white-pawn.png");
+    if (!whitePawnTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    whiteKnightTexture = IMG_LoadTexture(renderer, "./pictures/white-knight.png");
+    if (!whiteKnightTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+
+    blackPawnTexture = IMG_LoadTexture(renderer, "./pictures/black-pawn.png");
+    if (!blackPawnTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+    blackKnightTexture = IMG_LoadTexture(renderer, "./pictures/black-knight.png");
+    if (!blackKnightTexture) {
+        std::cout << "IMG_LoadTexture Error: " << IMG_GetError() << std::endl;
+    }
+}
+
+
 void Render::renderFigures()
 {
 
-std::cout << "render Figures\n";
-
-    SDL_Surface* tempSurface = SDL_LoadBMP("./pictures/white-pawn.bmp");
-    if (!tempSurface) {
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-
-    }
-
-    SDL_Texture* myTexture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-    SDL_FreeSurface(tempSurface);
-
-    if (!myTexture) {
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-
-    }
-
-
-
+    std::cout << "render Figures\n";
+    
     for(size_t figureNr = 0; figureNr < boardState->whiteFigures.size(); figureNr++)
     {
         // std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->position[1] << "\n";
@@ -85,17 +101,50 @@ std::cout << "render Figures\n";
         SDL_Rect destRect;
         destRect.x = xPos;  // Position von links
         destRect.y = yPos;  // Position von oben
-        destRect.w = 60;   // Breite der Textur
+        destRect.w = 70;   // Breite der Textur
         destRect.h = 75;   // Höhe der Textur
-        // Textur rendern
-        SDL_RenderCopy(renderer, myTexture, NULL, &destRect);     
+        // Textur rendern 
+        choseTexture(*boardState->whiteFigures[figureNr]);
+        SDL_RenderCopy(renderer, myTexture, NULL, &destRect);   
     }
 
 
+    for(size_t figureNr = 0; figureNr < boardState->blackFigures.size(); figureNr++)
+    {
+        // std::cout << boardState->blackFigures[figureNr]->position[0] << ":" << boardState->blackFigures[figureNr]->position[1] << "\n";
+        int xPos = (boardState->blackFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
+        int yPos = (8 - boardState->blackFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
+
+        SDL_Rect destRect;
+        destRect.x = xPos;  // Position von links
+        destRect.y = yPos;  // Position von oben
+        destRect.w = 70;   // Breite der Textur
+        destRect.h = 75;   // Höhe der Textur
+        // Textur rendern 
+        choseTexture(*boardState->blackFigures[figureNr]);
+        SDL_RenderCopy(renderer, myTexture, NULL, &destRect);   
+    }
+    
+
+    // for(size_t figureNr = 0; figureNr < boardState->blackFigures.size(); figureNr++)
+    // {
+    //     // std::cout << boardState->blackFigures[figureNr]->position[0] << ":" << boardState->blackFigures[figureNr]->position[1] << "\n";
+    //     int xPos = (boardState->blackFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
+    //     int yPos = (8 - boardState->blackFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
+
+    //     SDL_Rect destRect;
+    //     destRect.x = xPos;  // Position von links
+    //     destRect.y = yPos;  // Position von oben
+    //     destRect.w = 60;   // Breite der Textur
+    //     destRect.h = 75;   // Höhe der Textur
+    //     // Textur rendern
+    //     SDL_RenderCopy(renderer, myTexture, NULL, &destRect);     
+    // }
+
+    
     // Renderer präsentieren
     SDL_RenderPresent(renderer);
-    SDL_Delay(2000);
-    SDL_DestroyTexture(myTexture);
+    
 }
 
 

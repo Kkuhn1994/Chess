@@ -15,6 +15,7 @@ class Board
         void initField();
        
         void initPawns(std::string color);
+        void initKnight(std::string color);
         
         void initWhite();
         void initBlack();
