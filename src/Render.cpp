@@ -1,9 +1,8 @@
 #include "../include/Render.hpp"
 
-
-void Render::displayField()
+void Render::initWindow()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+   if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
     }
 
@@ -23,9 +22,14 @@ void Render::displayField()
         SDL_DestroyWindow(window);
         SDL_Quit();
     }
+}
+
+
+void Render::displayField()
+{
     // Hintergrund schwarz
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
+    // SDL_RenderClear(renderer);
 
     for (int row = 0; row < 8; ++row) {
         for (int col = 0; col < 8; ++col) {
@@ -44,7 +48,7 @@ void Render::displayField()
 
 void Render::choseTexture(const Figure &toRender)
 {
-    std::cout << toRender.color << "::" << toRender.type << "\n";
+    // std::cout << toRender.color << "::" << toRender.type << "\n";
     if(!toRender.color.compare("white") && !toRender.type.compare("Pawn"))
     {
         myTexture = whitePawnTexture;
@@ -154,8 +158,7 @@ void Render::loadTextures()
 void Render::renderFigures()
 {
 
-    std::cout << "render Figures\n";
-    
+    // std::cout << "render Figures\n";
     for(size_t figureNr = 0; figureNr < boardState->whiteFigures.size(); figureNr++)
     {
         // std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->position[1] << "\n";
@@ -165,7 +168,7 @@ void Render::renderFigures()
         SDL_Rect destRect;
         destRect.x = xPos;  // Position von links
         destRect.y = yPos;  // Position von oben
-        destRect.w = 70;   // Breite der Textur
+        destRect.w = 60;   // Breite der Textur
         destRect.h = 75;   // Höhe der Textur
         // Textur rendern 
         choseTexture(*boardState->whiteFigures[figureNr]);
@@ -182,7 +185,7 @@ void Render::renderFigures()
         SDL_Rect destRect;
         destRect.x = xPos;  // Position von links
         destRect.y = yPos;  // Position von oben
-        destRect.w = 70;   // Breite der Textur
+        destRect.w = 60;   // Breite der Textur
         destRect.h = 75;   // Höhe der Textur
         // Textur rendern 
         choseTexture(*boardState->blackFigures[figureNr]);
@@ -190,20 +193,7 @@ void Render::renderFigures()
     }
     
 
-    // for(size_t figureNr = 0; figureNr < boardState->blackFigures.size(); figureNr++)
-    // {
-    //     // std::cout << boardState->blackFigures[figureNr]->position[0] << ":" << boardState->blackFigures[figureNr]->position[1] << "\n";
-    //     int xPos = (boardState->blackFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
-    //     int yPos = (8 - boardState->blackFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
 
-    //     SDL_Rect destRect;
-    //     destRect.x = xPos;  // Position von links
-    //     destRect.y = yPos;  // Position von oben
-    //     destRect.w = 60;   // Breite der Textur
-    //     destRect.h = 75;   // Höhe der Textur
-    //     // Textur rendern
-    //     SDL_RenderCopy(renderer, myTexture, NULL, &destRect);     
-    // }
 
     
     // Renderer präsentieren

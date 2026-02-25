@@ -5,8 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-const int WINDOW_SIZE = 800;
-const int TILE_SIZE = WINDOW_SIZE / 8;
+
 
 class Board;
 
@@ -14,17 +13,20 @@ class Render
 {
     public:
         void renderFigures();
+        void initWindow();
         void displayField();
         void initGame();
         void loadTextures();
         void choseTexture(const Figure &toRender);
         Board *boardState;
+        SDL_Renderer* renderer;
          
 
     private:
         
 
-        SDL_Renderer* renderer;
+        
+        SDL_Renderer* renderer2;
         SDL_Window* window;
 
         SDL_Texture* whitePawnTexture;

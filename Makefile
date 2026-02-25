@@ -1,5 +1,5 @@
 # Pfade und Dateien
-SRC = src/main.cpp src/Board.cpp src/Pawn.cpp src/Knight.cpp src/Render.cpp
+SRC = src/main.cpp src/Board.cpp src/Pawn.cpp src/Knight.cpp src/Rook.cpp src/Bishop.cpp src/Render.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = g++
 CXXFLAGS = -std=c++17  $(shell sdl2-config --cflags)

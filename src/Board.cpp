@@ -10,6 +10,26 @@ void Board::initKnight(std::string color)
     figures.push_back(newKnight2);
 }
 
+
+void Board::initRook(std::string color)
+{
+    std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
+    int yPosition = (color == "white") ? 1 : 8;
+    Rook *newRook = new Rook(1, yPosition, color);
+    figures.push_back(newRook);
+    Rook *newRook2 = new Rook(8, yPosition, color);
+    figures.push_back(newRook2);
+}
+
+void Board::initBishop(std::string color)
+{
+    std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
+    int yPosition = (color == "white") ? 1 : 8;
+    Bishop *newBishop = new Bishop(3, yPosition, color);
+    figures.push_back(newBishop);
+    Bishop *newBishop2 = new Bishop(6, yPosition, color);
+    figures.push_back(newBishop2);
+}
 void Board::initPawns(std::string color)
 {
     std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
@@ -26,12 +46,16 @@ void Board::initWhite()
 {
     initPawns("white");
     initKnight("white");
+    initBishop("white");
+    initRook("white");
 }
 
 void Board::initBlack()
 {
     initPawns("black");
     initKnight("black");
+    initBishop("black");
+    initRook("black");
 }
 
 void Board::initField()
