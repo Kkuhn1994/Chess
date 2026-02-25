@@ -56,7 +56,7 @@ void figureChosenLoop(Figure *clickedFigure)
                 return;
             }
         }
-        // SDL_Delay(500);
+        SDL_Delay(5000);
     }
 }
 
@@ -91,6 +91,6 @@ int main(void)
                 }
             }
         }
-        SDL_Delay(500);
+        SDL_Delay(5000);
     }
 }
