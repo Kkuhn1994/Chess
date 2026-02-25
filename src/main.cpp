@@ -52,11 +52,33 @@ void figureChosenLoop(Figure *clickedFigure)
 
             if (event.type == SDL_MOUSEBUTTONDOWN)
             {
+                
+                Figure *hitFigure = findFigure(clickCordinate());
+                if(hitFigure)
+                {
+                    if(hitFigure->color.compare(clickedFigure->color))
+                    {
+                        std::cout << "remove\n";
+                        renderBoard.boardState->whiteFigures.erase(
+                            std::remove(renderBoard.boardState->whiteFigures.begin(), renderBoard.boardState->whiteFigures.end(), hitFigure),
+                            renderBoard.boardState->whiteFigures.end()
+                        );
+                        renderBoard.boardState->blackFigures.erase(
+                            std::remove(renderBoard.boardState->blackFigures.begin(), renderBoard.boardState->blackFigures.end(), hitFigure),
+                            renderBoard.boardState->blackFigures.end()
+                        );
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
                 clickedFigure->move(clickCordinate());
                 return;
+                
             }
         }
-        SDL_Delay(5000);
+        SDL_Delay(500);
     }
 }
 
@@ -66,6 +88,7 @@ int main(void)
 
     renderBoard.initGame();
     renderBoard.initWindow();
+    renderBoard.displayField();
     renderBoard.boardState->initField();
     renderBoard.loadTextures();
     while (running)
@@ -91,6 +114,6 @@ int main(void)
                 }
             }
         }
-        SDL_Delay(5000);
+        SDL_Delay(500);
     }
 }

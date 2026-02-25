@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <string>
+#include <algorithm>
 
 #include "Board.hpp"
 #include "Figure.hpp"
