@@ -3,6 +3,8 @@
 #include "Figure.hpp"
 #include "Headers.hpp"
 
+void passField();
+
 class Rook : virtual public Figure
 {
     public:

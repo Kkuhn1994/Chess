@@ -1,5 +1,5 @@
 # Pfade und Dateien
-SRC = src/main.cpp src/Board.cpp src/Pawn.cpp src/Knight.cpp src/Rook.cpp src/Bishop.cpp src/Render.cpp src/Queen.cpp src/King.cpp
+SRC = src/main.cpp src/Board.cpp src/Pawn.cpp src/Knight.cpp src/Rook.cpp src/Bishop.cpp src/Render.cpp src/Queen.cpp src/King.cpp  src/Figure.cpp
 
 OBJ = $(patsubst src/%.cpp,obj/%.o,$(SRC))
 CXX = g++

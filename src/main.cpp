@@ -15,6 +15,7 @@ Figure *findFigure(std::array<int, 2> newField)
         std::array<int, 2> position = renderBoard.boardState->whiteFigures[i]->position;
         if(position[0] == newField[0] && position[1] == newField[1])
         {
+            std::cout << "find  Figure\n";
             return renderBoard.boardState->whiteFigures[i];
         }
     }
@@ -23,9 +24,11 @@ Figure *findFigure(std::array<int, 2> newField)
         std::array<int, 2> position = renderBoard.boardState->blackFigures[i]->position;
         if(position[0] == newField[0] && position[1] == newField[1])
         {
+            std::cout << "find  Figure\n";
             return renderBoard.boardState->blackFigures[i];
         }
     }
+    
     return NULL;
 }
 

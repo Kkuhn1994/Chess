@@ -1,4 +1,5 @@
 #include "../include/Rook.hpp"
+#include "../include/Figure.hpp"
 
 // Rook::Rook(const std::string colour) : Figure(colour)
 // {
@@ -15,8 +16,10 @@ void Rook::move(const std::array<int, 2> newField)
 {
     if(newField[0] == position[0] || newField[1] == position[1])
     {
-        passFields(position, newField);
-        position = newField; 
+        if(passFields(position, newField))
+        {
+            position = newField;
+        }
     }
 }
 

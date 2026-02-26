@@ -13,8 +13,10 @@ void Bishop::move(const std::array<int, 2> newField)
 
     if(deltaX == deltaY)
     {
-        passFields(position, newField);
-        position = newField;
+        if(passFields(position, newField))
+        {
+            position = newField;
+        }
     }    
 }
 

@@ -28,7 +28,7 @@ void Render::initWindow()
 void Render::displayField()
 {
     // Hintergrund schwarz
-    std::cout << "displayField\n";
+    // std::cout << "displayField\n";
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     // SDL_RenderClear(renderer);
 
@@ -49,7 +49,7 @@ void Render::displayField()
 
 void Render::choseTexture(const Figure *toRender)
 {
-    std::cout << toRender->color << "::" << toRender->getType() << "\n";
+    // std::cout << toRender->color << "::" << toRender->getType() << "\n";
     if(!toRender->color.compare("white") && !toRender->getType().compare("Pawn"))
     {
         myTexture = whitePawnTexture;
@@ -72,7 +72,6 @@ void Render::choseTexture(const Figure *toRender)
     }
     if(!toRender->color.compare("white") && !toRender->getType().compare("Queen"))
     {
-        std::cout << "Queen \n\n";
         myTexture = whiteQueenTexture;
     }
 
@@ -160,12 +159,12 @@ void Render::loadTextures()
 void Render::renderFigures()
 {
 
-    std::cout << "render Figures\n";
+    // std::cout << "render Figures\n";
     for(size_t figureNr = 0; figureNr < boardState->whiteFigures.size(); figureNr++)
     {
         // std::cout << boardState->whiteFigures.size() << " size\n";
         // std::cout << figureNr << " figureNr\n";
-        std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->getType() << "\n";
+        // std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->getType() << "\n";
         int xPos = (boardState->whiteFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
         int yPos = (8 - boardState->whiteFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
 
