@@ -8,7 +8,13 @@ Knight::Knight(const int xPos, const int yPos, const std::string colour) : Figur
 
 void Knight::move(const std::array<int, 2> newField)
 {
-    position = newField; 
+    int deltaX = abs(newField[0] - position[0]);
+    int deltaY = abs(newField[1] - position[1]);
+
+    if(1 == std::min(deltaX, deltaY) && 2 == std::max(deltaX, deltaY))
+    {
+        position = newField; 
+    } 
 }
 
 const std::string Knight::getType() const

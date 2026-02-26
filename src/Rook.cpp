@@ -13,7 +13,10 @@ Rook::Rook(const int xPos, const int yPos, const std::string colour) : Figure(co
 
 void Rook::move(const std::array<int, 2> newField)
 {
-    position = newField; 
+    if(newField[0] == position[0] || newField[1] == position[1])
+    {
+        position = newField; 
+    }
 }
 
 const std::string Rook::getType() const

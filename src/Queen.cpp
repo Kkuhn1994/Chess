@@ -8,7 +8,8 @@ Queen::Queen(const int xPos, const int yPos, const std::string colour) : Rook(co
 
 void Queen::move(const std::array<int, 2> newField)
 {
-    position = newField; 
+    Rook::move(newField); 
+    Bishop::move(newField); 
 }
 
 const std::string Queen::getType() const

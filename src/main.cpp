@@ -70,9 +70,11 @@ void figureChosenLoop(Figure *clickedFigure)
                         // Entferne Pointer aus den Vektoren
                         white.erase(std::remove(white.begin(), white.end(), hitFigure), white.end()); 
                         black.erase(std::remove(black.begin(), black.end(), hitFigure), black.end());
-                        delete hitFigure;                 }
+                        delete hitFigure;                 
+                    }
+                    return;
                 }
-                
+                clickedFigure->move(clickCordinate());
                 return;
                 
             }

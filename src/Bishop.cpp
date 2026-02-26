@@ -8,7 +8,13 @@ Bishop::Bishop(const int xPos, const int yPos, const std::string colour) : Figur
 
 void Bishop::move(const std::array<int, 2> newField)
 {
-    position = newField; 
+    int deltaX = abs(newField[0] - position[0]);
+    int deltaY = abs(newField[1] - position[1]);
+
+    if(deltaX == deltaY)
+    {
+        position = newField;
+    }    
 }
 
 const std::string Bishop::getType() const
