@@ -28,6 +28,7 @@ void Render::initWindow()
 void Render::displayField()
 {
     // Hintergrund schwarz
+    std::cout << "displayField\n";
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     // SDL_RenderClear(renderer);
 
@@ -42,7 +43,7 @@ void Render::displayField()
             SDL_RenderFillRect(renderer, &rect);
         }
     }
-    SDL_RenderPresent(renderer);
+    
 }
 
 
@@ -158,13 +159,15 @@ void Render::loadTextures()
 void Render::renderFigures()
 {
 
-    // std::cout << "render Figures\n";
+    std::cout << "render Figures\n";
     for(size_t figureNr = 0; figureNr < boardState->whiteFigures.size(); figureNr++)
     {
+        std::cout << boardState->whiteFigures.size() << " size\n";
+        std::cout << figureNr << " figureNr\n";
         // std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->position[1] << "\n";
         int xPos = (boardState->whiteFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
         int yPos = (8 - boardState->whiteFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
-
+        std::cout << "test\n";
         SDL_Rect destRect;
         destRect.x = xPos;  // Position von links
         destRect.y = yPos;  // Position von oben
@@ -172,12 +175,15 @@ void Render::renderFigures()
         destRect.h = 75;   // Höhe der Textur
         // Textur rendern 
         choseTexture(*boardState->whiteFigures[figureNr]);
+        std::cout << "test\n";
         SDL_RenderCopy(renderer, myTexture, NULL, &destRect);   
     }
 
 
     for(size_t figureNr = 0; figureNr < boardState->blackFigures.size(); figureNr++)
     {
+        std::cout << boardState->blackFigures.size() << " size\n";
+        std::cout << figureNr << " figureNr\n";
         // std::cout << boardState->blackFigures[figureNr]->position[0] << ":" << boardState->blackFigures[figureNr]->position[1] << "\n";
         int xPos = (boardState->blackFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
         int yPos = (8 - boardState->blackFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
@@ -197,7 +203,7 @@ void Render::renderFigures()
 
     
     // Renderer präsentieren
-    SDL_RenderPresent(renderer);
+    
     
 }
 

@@ -6,7 +6,7 @@ Render renderBoard;
 
 Figure *findFigure(std::array<int, 2> newField)
 {
-    for(int i = 0 ; i < renderBoard.boardState->blackFigures.size(); i ++)
+    for(int i = 0 ; i < renderBoard.boardState->whiteFigures.size(); i ++)
     {
         std::array<int, 2> position = renderBoard.boardState->whiteFigures[i]->position;
         if(position[0] == newField[0] && position[1] == newField[1])
@@ -58,22 +58,17 @@ void figureChosenLoop(Figure *clickedFigure)
                 {
                     if(hitFigure->color.compare(clickedFigure->color))
                     {
+                        clickedFigure->move(clickCordinate());
                         std::cout << "remove\n";
-                        renderBoard.boardState->whiteFigures.erase(
-                            std::remove(renderBoard.boardState->whiteFigures.begin(), renderBoard.boardState->whiteFigures.end(), hitFigure),
-                            renderBoard.boardState->whiteFigures.end()
-                        );
-                        renderBoard.boardState->blackFigures.erase(
-                            std::remove(renderBoard.boardState->blackFigures.begin(), renderBoard.boardState->blackFigures.end(), hitFigure),
-                            renderBoard.boardState->blackFigures.end()
-                        );
-                    }
-                    else
-                    {
-                        return;
-                    }
+                        auto& white = renderBoard.boardState->whiteFigures;
+                        auto& black = renderBoard.boardState->blackFigures;
+
+                        // Entferne Pointer aus den Vektoren
+                        white.erase(std::remove(white.begin(), white.end(), hitFigure), white.end()); 
+                        black.erase(std::remove(black.begin(), black.end(), hitFigure), black.end());
+                        delete hitFigure;                 }
                 }
-                clickedFigure->move(clickCordinate());
+                
                 return;
                 
             }
@@ -96,6 +91,7 @@ int main(void)
         SDL_RenderClear(renderBoard.renderer);
         renderBoard.displayField();
         renderBoard.renderFigures();
+        SDL_RenderPresent(renderBoard.renderer);
         
         // 1️⃣ Events verarbeiten
         while (SDL_PollEvent(&event))
