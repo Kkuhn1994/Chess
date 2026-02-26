@@ -47,56 +47,57 @@ void Render::displayField()
 }
 
 
-void Render::choseTexture(const Figure &toRender)
+void Render::choseTexture(const Figure *toRender)
 {
-    // std::cout << toRender.color << "::" << toRender.type << "\n";
-    if(!toRender.color.compare("white") && !toRender.type.compare("Pawn"))
+    std::cout << toRender->color << "::" << toRender->getType() << "\n";
+    if(!toRender->color.compare("white") && !toRender->getType().compare("Pawn"))
     {
         myTexture = whitePawnTexture;
     }
-    if(!toRender.color.compare("white") && !toRender.type.compare("Knight"))
+    if(!toRender->color.compare("white") && !toRender->getType().compare("Knight"))
     {
         myTexture = whiteKnightTexture;
     }
-    if(!toRender.color.compare("white") && !toRender.type.compare("Bishop"))
+    if(!toRender->color.compare("white") && !toRender->getType().compare("Bishop"))
     {
         myTexture = whiteBishopTexture;
     }
-    if(!toRender.color.compare("white") && !toRender.type.compare("Rook"))
+    if(!toRender->color.compare("white") && !toRender->getType().compare("Rook"))
     {
         myTexture = whiteRookTexture;
     }
-    if(!toRender.color.compare("white") && !toRender.type.compare("King"))
+    if(!toRender->color.compare("white") && !toRender->getType().compare("King"))
     {
         myTexture = whiteKingTexture;
     }
-    if(!toRender.color.compare("white") && !toRender.type.compare("Queen"))
+    if(!toRender->color.compare("white") && !toRender->getType().compare("Queen"))
     {
+        std::cout << "Queen \n\n";
         myTexture = whiteQueenTexture;
     }
 
 
-    if(!toRender.color.compare("black") && !toRender.type.compare("Pawn"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("Pawn"))
     {
         myTexture = blackPawnTexture;
     }
-    if(!toRender.color.compare("black") && !toRender.type.compare("Knight"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("Knight"))
     {
         myTexture = blackKnightTexture;
     }
-    if(!toRender.color.compare("black") && !toRender.type.compare("Bishop"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("Bishop"))
     {
         myTexture = blackBishopTexture;
     }
-    if(!toRender.color.compare("black") && !toRender.type.compare("Rook"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("Rook"))
     {
         myTexture = blackRookTexture;
     }
-    if(!toRender.color.compare("black") && !toRender.type.compare("King"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("King"))
     {
         myTexture = blackKingTexture;
     }
-    if(!toRender.color.compare("black") && !toRender.type.compare("Queen"))
+    if(!toRender->color.compare("black") && !toRender->getType().compare("Queen"))
     {
         myTexture = blackQueenTexture;
     }
@@ -162,28 +163,28 @@ void Render::renderFigures()
     std::cout << "render Figures\n";
     for(size_t figureNr = 0; figureNr < boardState->whiteFigures.size(); figureNr++)
     {
-        std::cout << boardState->whiteFigures.size() << " size\n";
-        std::cout << figureNr << " figureNr\n";
-        // std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->position[1] << "\n";
+        // std::cout << boardState->whiteFigures.size() << " size\n";
+        // std::cout << figureNr << " figureNr\n";
+        std::cout << boardState->whiteFigures[figureNr]->position[0] << ":" << boardState->whiteFigures[figureNr]->getType() << "\n";
         int xPos = (boardState->whiteFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
         int yPos = (8 - boardState->whiteFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
-        std::cout << "test\n";
+
         SDL_Rect destRect;
         destRect.x = xPos;  // Position von links
         destRect.y = yPos;  // Position von oben
         destRect.w = 60;   // Breite der Textur
         destRect.h = 75;   // Höhe der Textur
         // Textur rendern 
-        choseTexture(*boardState->whiteFigures[figureNr]);
-        std::cout << "test\n";
+        choseTexture(boardState->whiteFigures[figureNr]);
+
         SDL_RenderCopy(renderer, myTexture, NULL, &destRect);   
     }
 
 
     for(size_t figureNr = 0; figureNr < boardState->blackFigures.size(); figureNr++)
     {
-        std::cout << boardState->blackFigures.size() << " size\n";
-        std::cout << figureNr << " figureNr\n";
+        // std::cout << boardState->blackFigures.size() << " size\n";
+        // std::cout << figureNr << " figureNr\n";
         // std::cout << boardState->blackFigures[figureNr]->position[0] << ":" << boardState->blackFigures[figureNr]->position[1] << "\n";
         int xPos = (boardState->blackFigures[figureNr]->position[0] - 1) * TILE_SIZE + TILE_SIZE / 5;
         int yPos = (8 - boardState->blackFigures[figureNr]->position[1]) * TILE_SIZE + TILE_SIZE / 7;
@@ -194,7 +195,7 @@ void Render::renderFigures()
         destRect.w = 60;   // Breite der Textur
         destRect.h = 75;   // Höhe der Textur
         // Textur rendern 
-        choseTexture(*boardState->blackFigures[figureNr]);
+        choseTexture(boardState->blackFigures[figureNr]);
         SDL_RenderCopy(renderer, myTexture, NULL, &destRect);   
     }
     

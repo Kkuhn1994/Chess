@@ -10,3 +10,8 @@ void Knight::move(const std::array<int, 2> newField)
 {
     position = newField; 
 }
+
+const std::string Knight::getType() const
+{
+    return Figure::type; 
+}

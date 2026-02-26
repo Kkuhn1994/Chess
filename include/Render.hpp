@@ -1,13 +1,9 @@
 #pragma once
 
+#include "Figure.hpp"
+#include "Render.hpp"
+#include "Board.hpp"
 #include "Headers.hpp"
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-
-
-
-class Board;
 
 class Render
 {
@@ -17,7 +13,7 @@ class Render
         void displayField();
         void initGame();
         void loadTextures();
-        void choseTexture(const Figure &toRender);
+        void choseTexture(const Figure *toRender);
         Board *boardState;
         SDL_Renderer* renderer;
          

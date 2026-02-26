@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Figure.hpp"
 #include "Headers.hpp"
 
 class Pawn : public Figure
@@ -9,4 +10,5 @@ class Pawn : public Figure
         ~Pawn() override = default;
 
         void move(const std::array<int, 2> newField) override;
+        const std::string getType() const override;
 };

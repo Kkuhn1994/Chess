@@ -5,17 +5,8 @@
 #include <array>
 #include <string>
 #include <algorithm>
-
-#include "Board.hpp"
-#include "Figure.hpp"
-
-#include "Pawn.hpp"
-#include "Knight.hpp"
-#include "Rook.hpp"
-#include "Bishop.hpp"
-
-
-#include "Render.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 const int WINDOW_SIZE = 800;
 const int TILE_SIZE = WINDOW_SIZE / 8;

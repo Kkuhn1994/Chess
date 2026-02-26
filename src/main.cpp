@@ -1,4 +1,8 @@
 #include "../include/Headers.hpp"
+#include "../include/Figure.hpp"
+#include "../include/Render.hpp"
+#include "../include/Board.hpp"
+
 
 SDL_Event event;
 bool running = true;
@@ -59,7 +63,7 @@ void figureChosenLoop(Figure *clickedFigure)
                     if(hitFigure->color.compare(clickedFigure->color))
                     {
                         clickedFigure->move(clickCordinate());
-                        std::cout << "remove\n";
+                        // std::cout << "remove\n";
                         auto& white = renderBoard.boardState->whiteFigures;
                         auto& black = renderBoard.boardState->blackFigures;
 

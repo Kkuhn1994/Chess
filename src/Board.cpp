@@ -1,5 +1,7 @@
 #include "../include/Board.hpp"
 
+
+
 void Board::initKnight(std::string color)
 {
     std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
@@ -30,6 +32,17 @@ void Board::initBishop(std::string color)
     Bishop *newBishop2 = new Bishop(6, yPosition, color);
     figures.push_back(newBishop2);
 }
+
+void Board::initKingAndQueen(std::string color)
+{
+    std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
+    int yPosition = (color == "white") ? 1 : 8;
+    Queen *newQueen = new Queen(4, yPosition, color);
+    figures.push_back(newQueen);
+    King *newKing = new King(5, yPosition, color);
+    figures.push_back(newKing);
+}
+
 void Board::initPawns(std::string color)
 {
     std::vector<Figure *> &figures = (color == "white") ? whiteFigures : blackFigures;
@@ -48,6 +61,7 @@ void Board::initWhite()
     initKnight("white");
     initBishop("white");
     initRook("white");
+    initKingAndQueen("white");
 }
 
 void Board::initBlack()
@@ -56,6 +70,7 @@ void Board::initBlack()
     initKnight("black");
     initBishop("black");
     initRook("black");
+    initKingAndQueen("black");
 }
 
 void Board::initField()

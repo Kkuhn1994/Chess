@@ -12,3 +12,8 @@ void Pawn::move(const std::array<int, 2> newField)
 {
     position = newField; 
 }
+
+const std::string Pawn::getType() const
+{
+    return Figure::type; 
+}

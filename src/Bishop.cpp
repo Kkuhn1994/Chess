@@ -10,3 +10,8 @@ void Bishop::move(const std::array<int, 2> newField)
 {
     position = newField; 
 }
+
+const std::string Bishop::getType() const
+{
+    return Figure::type; 
+}
