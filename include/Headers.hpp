@@ -11,3 +11,5 @@
 const int WINDOW_SIZE = 800;
 const int TILE_SIZE = WINDOW_SIZE / 8;
 
+Figure *findFigure(std::array<int, 2> newField);
+

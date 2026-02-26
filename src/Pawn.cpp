@@ -1,7 +1,5 @@
 #include "../include/Pawn.hpp"
 
-
-
 Pawn::Pawn(const int xPos, const int yPos, const std::string colour) : Figure(colour, "Pawn")
 {
     position[0] = xPos;
